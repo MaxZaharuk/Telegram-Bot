@@ -27,6 +27,7 @@ async def command_help(message: types.Message, state: FSMContext = None):
 
 @router.callback_query(Text(text='start'))
 async def command_start(call: types.CallbackQuery, bot, state: FSMContext = None):
+    await call.message.delete()
     await bot.send_sticker(chat_id=call.from_user.id, sticker=config.load_config().sticker_hello.sticker)
     await bot.send_message(chat_id=call.from_user.id, text=f"Привет/Hello, {call.from_user.full_name}\! "
                         f"Выберите язык/Choose language", reply_markup=start_menu.keyboard)

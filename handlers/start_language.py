@@ -17,9 +17,9 @@ router = Router()
 async def choose_language(call: types.CallbackQuery, state: FSMContext = None):
     await call.message.delete()
     if call.data == "Ru":
-        await call.message.answer(f"Выбран русский язык")
+        await call.message.answer(f"_Выбран русский язык_")
     else:
-        await call.message.answer("English language chosen")
+        await call.message.answer("_English language chosen_")
     await set_language(config.load_config().db.db_file_name, call.from_user.id, call.data)
     lang = await get_language(config.load_config().db.db_file_name, call.from_user.id)
     if lang == "Ru":

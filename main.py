@@ -22,7 +22,6 @@ dp.include_router(symbols.router)
 asyncio.run(db_sqlite.start_db(load_config().db.db_file_name))
 
 if __name__ == '__main__':
-    print()
     logging.basicConfig(level=logging.INFO, stream=sys.stdout)
     dp.run_polling(bot)
 

@@ -38,3 +38,12 @@ async def get_language(db_name, user_id):
         return lang[0]
 
 
+async def get_history(db_name, user_id):
+    async with sq.connect(os.path.join(os.path.abspath("database") + os.path.sep + db_name)) as db:
+        history = await db.execute(f"""SELECT query FROM history WHERE id = {user_id}""")
+        return await history.fetchall()
+
+
+
+
+
