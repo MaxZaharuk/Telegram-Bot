@@ -24,9 +24,7 @@ async def choose_fx_instrument(call: CallbackQuery, state: FSMContext):
         lang_file = lexicon.english
     kb = await instruments.create_FX_symbols(lang_file)
     await call.message.answer(text=lang_file.lexicon["Choose symbol"], reply_markup=kb)
-    print(await state.get_data())
     await state.set_state(States.forex_instrument)
-    print(await state.get_data())
 
 
 @router.callback_query(Text(text="CR"))
@@ -72,8 +70,7 @@ async def get_back(call: CallbackQuery, state: FSMContext):
     else:
         lang_file = lexicon.english
     kb = await main_menu.create_main_kb(lang_file)
-    await call.message.answer(text=lang_file.lexicon["Choose symbol"], reply_markup=kb)
+    await call.message.answer(text=lang_file.lexicon["Choose menu"], reply_markup=kb)
     await state.set_data({})
     await state.set_state(States.start_state)
-    print(await state.get_data())
 

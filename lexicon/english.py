@@ -6,5 +6,8 @@ lexicon: dict[str, str] = {
     "Choose menu": "Please choose a menu item",
     "Back": "Back",
     "Choose symbol": "__*Choose symbol you want to check*__",
-    "No history": "*there are no registered queries\. Return to main menu*"
+    "No history": "*there are no registered queries\. Return to main menu*",
+    "Daily": "Daily",
+    "Weekly": "Weekly",
+    "Monthly": "Monthly"
 }
