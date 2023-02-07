@@ -11,6 +11,7 @@ class TgBot:
 @dataclass
 class RapidApi:
     rapid_api_key: str
+    rapid_api_host: str
 
 
 @dataclass
@@ -43,7 +44,7 @@ def load_config():
         load_dotenv()
     return Config(
         tg_bot=TgBot(token=os.getenv("BOT_TOKEN")),
-        rapid_api=RapidApi(rapid_api_key=os.getenv("RAPID_API_KEY")),
+        rapid_api=RapidApi(rapid_api_key=os.getenv("RAPID_API_KEY"), rapid_api_host=os.getenv("RAPID_API_HOST")),
         db=DB(db_file_name=os.getenv("DB_FILE_NAME")),
         redis=Redis(host=os.getenv("REDIS_HOST"), use=(os.getenv("REDIS_USE") == True)),
         sticker_hello=Stickers(sticker=os.getenv("STICKER_HELLO"))
