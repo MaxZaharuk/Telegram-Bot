@@ -1,44 +1,29 @@
-import requests
+import json
+
+import aiohttp
 from config.config import load_config
 
-querystring_quotes = {"from_symbol": "EUR",
-                      "function": "FX_DAILY",
-                      "to_symbol": "USD",
-                      "outputsize": "compact",
-                      "datatype": "json"}
-
-querystring_indicator = {"time_period": "200",
-                         "interval": "5min",
-                         "series_type": "close",
-                         "function": "SMA",
-                         "symbol": "MSFT",
-                         "datatype": "json"}
 
 headers = {
     "X-RapidAPI-Key": load_config().rapid_api.rapid_api_key,
     "X-RapidAPI-Host": load_config().rapid_api.rapid_api_host
 }
 
-url = f"https://{headers[1]}/query"
-
 
 async def create_quote_query(symbol1, symbol2, func):
-    new_query = querystring_quotes
-    new_query["from_symbol"] = symbol1
-    new_query["function"] = func
-    new_query["to_symbol"] = symbol2
-    return new_query
+    querystring_quotes = f"/query?from_symbol={symbol1}&function={func}&" \
+                         f"to_symbol={symbol2}&outputsize=compact&datatype=json"
+    return querystring_quotes
 
 
 async def create_indicator_query(symbol, time_serie, func):
-    new_query_indicator = querystring_indicator
-    new_query_indicator["interval"] = time_serie
-    new_query_indicator["function"] = func
-    new_query_indicator["to_symbol"] = symbol2
-    return new_query_indicator
+    querystring_indicator = f"/query?time_period=200&interval={time_serie}&series_type=close&" \
+                            f"function={func}&symbol={symbol}&datatype=json"
+    return querystring_indicator
 
 
 async def make_request(query):
-    response = requests.request("GET", url, headers=headers, params=query)
-    return response
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"https://{headers['X-RapidAPI-Host']}{query}]", headers=headers) as response:
+            return await json.loads(await response.text())
 
