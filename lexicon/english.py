@@ -9,5 +9,7 @@ lexicon: dict[str, str] = {
     "No history": "*there are no registered queries\. Return to main menu*",
     "Daily": "Daily",
     "Weekly": "Weekly",
-    "Monthly": "Monthly"
+    "Monthly": "Monthly",
+    "Choose TF": "Choose timeframe",
+    "Choose action": "Choose action"
 }

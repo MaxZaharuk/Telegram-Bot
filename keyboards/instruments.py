@@ -3,7 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 main_symbols = {"EUR", "USD"}
 secondary_straight = {"CHF", "JPY", "CAD"}
-secondary_reverse = {"GBP", "AUD", "XAU"}
+secondary_reverse = {"GBP", "AUD", "RUB"}
 
 
 async def create_FX_symbols(language):

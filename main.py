@@ -7,6 +7,8 @@ from config.config import load_config
 from handlers import commands
 from handlers import start_language
 from handlers import symbols
+from handlers import chose_tf
+from handlers import get_plots
 from aiogram.fsm.storage.memory import MemoryStorage
 from aiogram.fsm.storage.redis import RedisStorage
 from database import db_sqlite
@@ -19,6 +21,8 @@ dp: Dispatcher = Dispatcher(storage=storage)
 dp.include_router(commands.router)
 dp.include_router(start_language.router)
 dp.include_router(symbols.router)
+dp.include_router(chose_tf.router)
+dp.include_router(get_plots.router)
 asyncio.run(db_sqlite.start_db(load_config().db.db_file_name))
 
 if __name__ == '__main__':

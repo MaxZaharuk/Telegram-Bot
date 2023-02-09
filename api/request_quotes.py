@@ -1,12 +1,11 @@
 import json
-
 import aiohttp
 from config.config import load_config
 
 
 headers = {
     "X-RapidAPI-Key": load_config().rapid_api.rapid_api_key,
-    "X-RapidAPI-Host": load_config().rapid_api.rapid_api_host
+    "X-RapidAPI-Host": load_config().rapid_api.rapid_api_url
 }
 
 
@@ -17,7 +16,7 @@ async def create_quote_query(symbol1, symbol2, func):
 
 
 async def create_indicator_query(symbol, time_serie, func):
-    querystring_indicator = f"/query?time_period=200&interval={time_serie}&series_type=close&" \
+    querystring_indicator = f"/query?time_period=200&interval={time_serie.lower()}&series_type=close&" \
                             f"function={func}&symbol={symbol}&datatype=json"
     return querystring_indicator
 
@@ -25,5 +24,5 @@ async def create_indicator_query(symbol, time_serie, func):
 async def make_request(query):
     async with aiohttp.ClientSession() as session:
         async with session.get(f"https://{headers['X-RapidAPI-Host']}{query}]", headers=headers) as response:
-            return await json.loads(await response.text())
+            return json.loads(await response.text())
 

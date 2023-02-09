@@ -27,7 +27,7 @@ async def choose_fx_instrument(call: CallbackQuery, state: FSMContext):
     await state.set_state(States.forex_instrument)
 
 
-@router.callback_query(Text(text="CR"))
+@router.callback_query(Text(text="DIGITAL_CURRENCY"))
 async def choose_digital_instrument(call: CallbackQuery, state: FSMContext):
     await call.message.delete()
     await state.update_data(chosen_mode=call.data)
