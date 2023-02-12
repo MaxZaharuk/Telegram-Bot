@@ -55,13 +55,18 @@ async def make_technical_quote(response, indicator):
     price = []
     for key, value in response[f"Technical Analysis: {indicator}"].items():
         date.append(key)
-        price.append(value["SMA"])
-
-    prices = pd.DataFrame({"date": date, "value": price})
-
+        price.append(float(value[f"{indicator}"]))
+    prices = pd.DataFrame({
+        'date': date,
+        'price': price
+    })
+    prices['date'] = pd.to_datetime(prices['date'])
     fig, ax = plt.subplots()
     date_format = mpl_dates.DateFormatter('%d-%m-%Y')
     ax.xaxis.set_major_formatter(date_format)
+    ax.set_title(f'{response["Meta Data"]["1: Symbol"]} - {indicator}')
+    ax.autoscale_view()
+    ax.plot(prices['date'], prices['price'], color="blue")
     ax.minorticks_on()
     ax.grid(which='major',
             color='k',
@@ -69,7 +74,8 @@ async def make_technical_quote(response, indicator):
     ax.grid(which='minor',
             color='k',
             linestyle=':')
-    ax.set_title(f'{response["Meta Data"]["1: Symbol"]} - {indicator}')
-    ax.plot(prices["date"], prices["value"], color="blue")
-    return plt.show()
-#TODO
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    path = os.path.join(os.path.abspath('plots'), 'temp.png')
+    plt.savefig(os.path.join(os.path.abspath('plots'), 'temp.png'))
+    return path

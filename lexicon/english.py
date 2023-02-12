@@ -11,5 +11,7 @@ lexicon: dict[str, str] = {
     "Weekly": "Weekly",
     "Monthly": "Monthly",
     "Choose TF": "Choose timeframe",
-    "Choose action": "Choose action"
+    "Choose action": "Choose action",
+    "History": "__Your last queries history__",
+    "Subscribe": "Subscribe for change"
 }

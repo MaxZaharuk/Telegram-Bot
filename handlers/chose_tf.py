@@ -24,6 +24,9 @@ router = Router()
 @router.callback_query(Text(text="EURAUD"))
 @router.callback_query(Text(text="EURRUB"))
 @router.callback_query(Text(text="EURGBP"))
+@router.callback_query(Text(text="ETCUSD"))
+@router.callback_query(Text(text="DOGEUSD"))
+@router.callback_query(Text(text="BTCUSD"))
 async def choose_fx_instrument(call: CallbackQuery, state: FSMContext):
     await call.message.delete()
     await state.update_data(chosen_symbol=call.data)
@@ -35,3 +38,19 @@ async def choose_fx_instrument(call: CallbackQuery, state: FSMContext):
     kb = await keyboards.time_frame.create_kb_timeseries(lang_file)
     await call.message.answer(text=lang_file.lexicon["Choose TF"], reply_markup=kb)
     await state.set_state(States.choose_mode)
+
+
+# @router.callback_query(Text(text="ETCUSD"))
+# @router.callback_query(Text(text="DOGEUSD"))
+# @router.callback_query(Text(text="BTCUSD"))
+# async def choose_digital_instrument(call: CallbackQuery, state: FSMContext):
+#     await call.message.delete()
+#     await state.update_data(chosen_symbol=call.data)
+#     lang = await db_sqlite.get_language(load_config().db.db_file_name, call.from_user.id)
+#     if lang == "Ru":
+#         lang_file = lexicon.russian
+#     else:
+#         lang_file = lexicon.english
+#     kb = await keyboards.time_frame.create_kb_timeseries(lang_file)
+#     await call.message.answer(text=lang_file.lexicon["Choose TF"], reply_markup=kb)
+#     await state.set_state(States.choose_mode)

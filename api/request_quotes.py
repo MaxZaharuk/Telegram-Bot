@@ -15,6 +15,11 @@ async def create_quote_query(symbol1, symbol2, func):
     return querystring_quotes
 
 
+async def create_digital_query(symbol, time_serie, func):
+    querystring_quotes = f"/query?market=USD&symbol={symbol}&function={func}_{time_serie}"
+    return querystring_quotes
+
+
 async def create_indicator_query(symbol, time_serie, func):
     querystring_indicator = f"/query?time_period=200&interval={time_serie.lower()}&series_type=close&" \
                             f"function={func}&symbol={symbol}&datatype=json"
