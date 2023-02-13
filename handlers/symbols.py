@@ -55,8 +55,8 @@ async def show_history(call: CallbackQuery, state: FSMContext):
     else:
         await call.message.answer(text=f"{call.from_user.full_name}, {lang_file.lexicon['History']}")
         for record in history:
-            await call.message.answer(text=record[0].replace("-", "\-").replace(".", "\.") + " " +
-                                      record[1].replace("-", "\-").replace(".", "\."))
+            await call.message.answer(text=record[0].replace("-", "\-").replace(".", "\.").replace("_", "\_") + " " +
+                                      record[1].replace("-", "\-").replace(".", "\.").replace("_", "\_"))
     kb = await main_menu.create_main_kb(lang_file)
     await call.message.answer(text=lang_file.lexicon["Choose symbol"], reply_markup=kb)
     await state.set_data({})

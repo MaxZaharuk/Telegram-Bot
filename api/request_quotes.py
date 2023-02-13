@@ -28,6 +28,6 @@ async def create_indicator_query(symbol, time_serie, func):
 
 async def make_request(query):
     async with aiohttp.ClientSession() as session:
-        async with session.get(f"https://{headers['X-RapidAPI-Host']}{query}]", headers=headers) as response:
+        async with session.get(f"https://{headers['X-RapidAPI-Host']}{query}", headers=headers) as response:
             return json.loads(await response.text())
 
