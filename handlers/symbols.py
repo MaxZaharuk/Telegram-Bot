@@ -50,10 +50,11 @@ async def show_history(call: CallbackQuery, state: FSMContext):
     else:
         lang_file = lexicon.english
     history = await db_sqlite.get_history(load_config().db.db_file_name, call.from_user.id)
+    name = call.from_user.full_name.replace("-", "\-").replace(".", "\.").replace("_", "\_")
     if not history:
-        await call.message.answer(text=f"{call.from_user.full_name}, {lang_file.lexicon['No history']}")
+        await call.message.answer(text=f"{name}, {lang_file.lexicon['No history']}")
     else:
-        await call.message.answer(text=f"{call.from_user.full_name}, {lang_file.lexicon['History']}")
+        await call.message.answer(text=f"{name}, {lang_file.lexicon['History']}")
         for record in history:
             await call.message.answer(text=record[0].replace("-", "\-").replace(".", "\.").replace("_", "\_") + " " +
                                       record[1].replace("-", "\-").replace(".", "\.").replace("_", "\_"))
