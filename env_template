@@ -1,5 +1,6 @@
 BOT_TOKEN = 'UISGH$#*T34hg0834fgb4shgreguhb'
-RAPID_API_KEY = 'dfijh09w4-5hgjdfiohgkjs4'
+RAPID_API_KEY = '75a14c24b7mshf183595489905dcp1bb406jsn7d10ebe71919'
+RAPID_API_URL = "alpha-vantage.p.rapidapi.com"
 DB_FILE_NAME = "db.sqlite3"
 STICKER_HELLO = "CAACAgIAAxkBAAEHk1Fj3RRM3E_1YP1l0hYr1wlVEbgmvQACegQAAjeEMAABitMmEswfMvcuBA"
 REDIS_HOST = "redis://localhost:6379/0"
