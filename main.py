@@ -4,7 +4,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 
 from config.config import load_config
-from handlers import commands
+from handlers import commands, any_message
 from handlers import start_language
 from handlers import symbols
 from handlers import chose_tf
@@ -23,6 +23,7 @@ dp.include_router(start_language.router)
 dp.include_router(symbols.router)
 dp.include_router(chose_tf.router)
 dp.include_router(get_plots.router)
+dp.include_router(any_message.router)
 asyncio.run(db_sqlite.start_db(load_config().db.db_file_name))
 
 if __name__ == '__main__':
