@@ -15,3 +15,15 @@ Before you run:
 3. Run main.py
 
 P.S. Additionally to install all packages from "requirements.txt" do not forget to execute in terminal: "pip install mpl_finance"
+
+
+Basic functional:
+
+* commands "/start" and "/help" to start bot or get help to start
+* language choice (it could be changed anytime)
+* queries history to see last 5 queries
+* market choice: forex or crypto
+* instrument choice like e.g. EURUSD or BTCUSD
+* timeseries choice: daily, weekly, monthly
+* after all bot will send some plots: one with chosen instrument on chosen timeseries and three with technical indicators (SMA, EMA, MACD)
+* subscribe service is still in development
